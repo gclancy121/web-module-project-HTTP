@@ -26,11 +26,13 @@ const App = (props) => {
       });
   }, []);
 
-  const deleteMovie = (id)=> {
-  }
 
   const addToFavorites = (movie) => {
-    
+    const newFavorite = {
+      title: movie[0].title,
+      id: movie[0].id
+    }
+    setFavoriteMovies([...favoriteMovies, newFavorite]);
   }
 
   return (
@@ -50,7 +52,7 @@ const App = (props) => {
             <Route path="/movies/edit/:id" render={props => <EditMovieForm {...props} setMovies={setMovies}/>} >
             </Route>
 
-            <Route path="/movies/:id" render={props => <Movie {...props} setMovies={setMovies} />} >
+            <Route path="/movies/:id" render={props => <Movie {...props} setMovies={setMovies} addToFavorites={addToFavorites}/>} >
             </Route>
 
             <Route path="/movies">
